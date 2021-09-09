@@ -5,7 +5,8 @@
 
 import requests
 
-search_url = 'http://192.168.100.128:8000/api/v1/search/'
+# search_url = 'http://192.168.100.128:8000/api/v1/search/'
+search_url = 'http://192.168.2.155:1337/api/v1/search/'
 headers = {'content-type': 'application/json'}
 
 
@@ -51,7 +52,8 @@ def search(request_list):
     if response:
         houses_data = response.json()
         for x in houses_data:
-            house_detail_url = f"http://192.168.100.128:8000/property/detail/{x['id']}/"
+            # house_detail_url = f"http://192.168.100.128:8000/property/detail/{x['id']}/"
+            house_detail_url = f"http://192.168.2.155:1337/property/detail/{x['id']}/"
             text = f"Nomi: <b>{x['title']}</b>\n" \
                    f"Narxi: {x['price_budniy']} $\n" \
                    f"Yotoqxonalar soni: {x['bedrooms']} ta\n" \

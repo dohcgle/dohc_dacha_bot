@@ -3,8 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 from config import TOKEN
 import markups as nav
-import requests
-import emoji
+
 from filters import search
 
 # Dacha API
