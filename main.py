@@ -10,7 +10,6 @@ from filters import search
 dacha_url = 'http://192.168.100.128/api/v1/house_list/'
 headers = {'content-type': 'application/json'}
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -24,6 +23,7 @@ request_list = {
     "guest": ""
 }
 
+
 @dp.message_handler(commands=["start"])
 async def command_start(message: types.Message):
     await bot.send_message(message.from_user.id, text='Maklersiz hayot guzal hayot',
@@ -32,7 +32,6 @@ async def command_start(message: types.Message):
 
 @dp.message_handler()
 async def bot_message(message: types.Message):
-
     if 'Hudud' in message.text:
         await bot.send_message(message.from_user.id, 'Hududlar', reply_markup=nav.AreaMenu)
     elif 'Bosh menyu' in message.text:
@@ -64,10 +63,8 @@ async def bot_message(message: types.Message):
         await bot.send_message(message.from_user.id, 'Chimyon dachalari', reply_markup=nav.PriceMenu)
     elif message.text == 'Barchasi':
         request_list["waymark"] = message.text
-        await bot.send_message(message.from_user.id, text='Chorvoq, Xumson, Yusufxona, Burchmullo, Sijjak, Chimyon', parse_mode="html", reply_markup=nav.PriceMenu)
-
-
-
+        await bot.send_message(message.from_user.id, text='Chorvoq, Xumson, Yusufxona, Burchmullo, Sijjak, Chimyon',
+                               parse_mode="html", reply_markup=nav.PriceMenu)
 
     # Narxi buyicha filtrlash
     if message.text == "0-200":
@@ -92,10 +89,13 @@ async def bot_message(message: types.Message):
         if house_list:
             i = 0
             while i < len(house_list):
-                await bot.send_photo(message.from_user.id, photo=house_list[i], caption=house_list[i+1], parse_mode='html', reply_markup=nav.ReservedMenu)
+                await bot.send_photo(message.from_user.id, photo=house_list[i], caption=house_list[i + 1],
+                                     parse_mode='html', reply_markup=nav.ReservedMenu)
                 i = i + 2
         else:
-            await bot.send_message(message.from_user.id, text='Dachalar yuq')
+            habi_img = 'https://ofigenno.com/wp-content/uploads/posts/h/habi-leym/thumb.jpg'
+            await bot.send_photo(message.from_user.id, photo=habi_img, caption='Uzr, bu turdagi bush dachalar hozircha bizda yuq')
+
     elif 'Ulfatlar' in message.text:
         request_list["guest"] = message.text
         print(request_list)
@@ -108,7 +108,9 @@ async def bot_message(message: types.Message):
                                      parse_mode='html', reply_markup=nav.ReservedMenu)
                 i = i + 2
         else:
-            await bot.send_message(message.from_user.id, text='Dachalar yuq')
+            habi_img = 'https://ofigenno.com/wp-content/uploads/posts/h/habi-leym/thumb.jpg'
+            await bot.send_photo(message.from_user.id, photo=habi_img, caption='Uzr, bu turdagi bush dachalar hozircha bizda yuq')
+
     elif 'Oila bilan' in message.text:
         request_list["guest"] = message.text
         print(request_list)
@@ -121,7 +123,9 @@ async def bot_message(message: types.Message):
                                      parse_mode='html', reply_markup=nav.ReservedMenu)
                 i = i + 2
         else:
-            await bot.send_message(message.from_user.id, text='Dachalar yuq')
+            habi_img = 'https://ofigenno.com/wp-content/uploads/posts/h/habi-leym/thumb.jpg'
+            await bot.send_photo(message.from_user.id, photo=habi_img, caption='Uzr, bu turdagi bush dachalar hozircha bizda yuq')
+
     elif 'Qizlar bilan' in message.text:
         request_list["guest"] = message.text
         print(request_list)
@@ -134,7 +138,8 @@ async def bot_message(message: types.Message):
                                      parse_mode='html', reply_markup=nav.ReservedMenu)
                 i = i + 2
         else:
-            await bot.send_message(message.from_user.id, text='Dachalar yuq')
+            habi_img = 'https://ofigenno.com/wp-content/uploads/posts/h/habi-leym/thumb.jpg'
+            await bot.send_photo(message.from_user.id, photo=habi_img, caption='Uzr, bu turdagi bush dachalar hozircha bizda yuq')
 
 
 if __name__ == '__main__':

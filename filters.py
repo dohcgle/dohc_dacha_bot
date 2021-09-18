@@ -6,7 +6,8 @@
 import requests
 
 # search_url = 'http://192.168.100.128:8000/api/v1/search/'
-search_url = 'http://192.168.2.155:1337/api/v1/search/'
+# search_url = 'http://192.168.2.155:1337/api/v1/search/'
+search_url = 'http://195.158.9.252:1337/api/v1/search/'
 headers = {'content-type': 'application/json'}
 
 
@@ -52,8 +53,9 @@ def search(request_list):
     if response:
         houses_data = response.json()
         for x in houses_data:
+            print(x)
             # house_detail_url = f"http://192.168.100.128:8000/property/detail/{x['id']}/"
-            house_detail_url = f"http://192.168.2.155:1337/property/detail/{x['id']}/"
+            house_detail_url = f"http://195.158.9.252:1337/property/detail/{x['id']}/"
             text = f"Nomi: <b>{x['title']}</b>\n" \
                    f"Narxi: {x['price_budniy']} $\n" \
                    f"Yotoqxonalar soni: {x['bedrooms']} ta\n" \
@@ -61,6 +63,7 @@ def search(request_list):
                    f"Batafsil: <a href='{house_detail_url}'>Havolani bosing</a>" \
 
             main_photo = "https://i1.wp.com/1dacha-sad.com/wp-content/uploads/2013/03/12-1.jpg"
+
             any_list.append(main_photo)
             any_list.append(text)
 
